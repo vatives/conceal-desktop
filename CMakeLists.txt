@@ -5,23 +5,32 @@ include(QREncode.cmake)
 
 project(${CN_PROJECT_NAME})
 
+
 execute_process(COMMAND git log -1 --pretty=format:%h
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 OUTPUT_VARIABLE GIT_REVISION)
-
+option(CMAKE_USE_WIN32_THREADS_INIT "using WIN32 threads" ON)
 set(CRYPTONOTE_LIB cryptonote)
-set(CMAKE_PREFIX_PATH "C:\\Qt\\5.11.0\\msvc2017_64\\lib\\cmake\\")
+set(CMAKE_PREFIX_PATH "D:\\Qt\\Qt5.11.0\\5.11.0\\msvc2017_64\\lib\\cmake\\")
 
 include_directories(${CMAKE_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     src
     cryptonote/external
     cryptonote/include
-    cryptonote/src)
+    cryptonote/src
+    "D:\\local\\boost_1_68_0")
 
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
+
+
+set(BOOST_ROOT "D:\\local\\boost_1_68_0")
+
+set(BOOST_INCLUDE "D:\\local\\boost_1_68_0\\lib64-msvc-14.1")
+set(BOOST_INCLUDE "D:\\local\\boost_1_68_0\\libs")
+set(Boost_NO_BOOST_CMAKE ON)
 
 set(Boost_NO_BOOST_CMAKE ON)
 set(Boost_USE_STATIC_LIBS ON)
